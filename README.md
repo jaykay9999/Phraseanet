@@ -433,3 +433,5 @@ You can also download a testing pre installed Virtual Machine in OVA format here
 
 https://www.phraseanet.com/download/
 
+
+Dummy fix to trigger CI.
