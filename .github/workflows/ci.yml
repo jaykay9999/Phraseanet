@@ -13,78 +13,9 @@ env:
   CACHE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
 jobs:
-  build-phraseanet-setup:
-    name: 'build phraseanet-setup'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-setup
-      context: .
-      file: ./Dockerfile
-      target: phraseanet-setup
-    secrets: inherit
-
-  build-phraseanet-nginx:
-    name: 'build phraseanet-nginx'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-nginx
-      context: .
-      file: ./Dockerfile
-      target: phraseanet-nginx
-    secrets: inherit
-
-  build-phraseanet-fpm:
-    name: 'build phraseanet-fpm'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-fpm
-      context: .
-      file: ./Dockerfile
-      target: phraseanet-fpm
-    secrets: inherit
-
-  build-phraseanet-worker:
-    name: 'build phraseanet-worker'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-worker
-      context: .
-      file: ./Dockerfile
-      target: phraseanet-worker
-    secrets: inherit
-
-  build-phraseanet-db:
-    name: 'build phraseanet-db'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-db
-      context: ./docker/db
-      file: ./docker/db/Dockerfile
-      target: ''
-    secrets: inherit
-
-  build-phraseanet-elasticsearch:
-    name: 'build phraseanet-elasticsearch'
-    uses: ./.github/workflows/build.yml
-    with:
-      image: phraseanet-elasticsearch
-      context: ./docker/elasticsearch
-      file: ./docker/elasticsearch/Dockerfile
-      target: ''
-    secrets: inherit
-
-
   test:
     name: 'unit test'
     runs-on: ubuntu-latest
-    needs:
-      - build-phraseanet-setup
-      - build-phraseanet-nginx
-      - build-phraseanet-fpm
-      - build-phraseanet-worker
-      - build-phraseanet-db
-      - build-phraseanet-elasticsearch
-
 
     steps:
       - name: checkout
